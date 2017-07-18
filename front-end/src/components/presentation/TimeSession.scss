@@ -1,0 +1,19 @@
+@import "~react-toolbox/lib/colors";
+
+.time-session{
+    background: var(--color-white);
+    margin-bottom:15px;
+    margin-top:15px;
+     .counter {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2em;
+            line-height: 2.2em;
+            text-align: center;
+            color: var(--color-black);
+            height:100%;
+            background: #fafafa;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+    }
+}

@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  
+  app:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - front-end
+      - back-end
+
+  front-end:
+    image: nginx:1.9
+    volumes:
+      - ./front-end:/usr/share/nginx/html/
+
+  back-end:
+    build: ./back-end
+    #command: bash
+    command: bash -c "./wait-for-it.sh -t 60 db:5432 && go build . && ./app"
+    volumes:
+     - ./back-end:/go/src/app
+    environment:
+      - VIRTUAL_HOST=api.tracler.local
+
+  db:
+    image: postgres:9.4
+    container_name: db
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
